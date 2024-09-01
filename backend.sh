@@ -66,3 +66,20 @@ cd /app
 rm -rf /app/* #removing existing code
 unzip /tmp/backend.zip &>>$LOG_FILE
 VALIDATE $? "Extracting application code"
+
+npm install &>>LOG_FILE
+cp /home/ec2-user/expense-shell  /etc/systemd/system/backend.service
+dnf install mysql -y
+#load the data before running the application
+dnf install mysql -y &>>LOG_FILE
+VALIDATE $? "Installing mysql client"
+
+mysql -h mysql.dev2011.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
+VALIDATE $? "Schema loading"
+
+
+
+
+
+
+
