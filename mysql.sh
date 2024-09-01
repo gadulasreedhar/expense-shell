@@ -37,14 +37,14 @@ echo "Scipt started executed at:$(date)"  | tee -a $LOG_FILE
 
 CHKROOT
 
-dnf install mysql-server -y
-VALIDATE $? "Installing MYSQL server" &>>$LOG_FILE
+dnf install mysql-server -y &>>$LOG_FILE
+VALIDATE $? "Installing MYSQL server" 
 
-systemctl enable mysqld
-VALIDATE $? "Enable MYSQL Server" &>>$LOG_FILE
+systemctl enable mysqld &>>$LOG_FILE
+VALIDATE $? "Enable MYSQL Server" 
 
-systemctl start mysqld
-VALIDATE $? "Start MYSQL server" &>>$LOG_FILE
+systemctl start mysqld &>>$LOG_FILE
+VALIDATE $? "Start MYSQL server" 
 
-mysql_secure_installation --set-root-pass ExpenseApp@1
-VALIDATE $? "Setting up root password" &?>>$LOG_FILE
+mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE
+VALIDATE $? "Setting up root password" 
